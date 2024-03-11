@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import restaurants from "../utils/mockData";
-import { SWIGGY_API } from "../utils/constants";
+import { Link } from "react-router-dom";
 
-import { RestaurantCard } from "./RestaurantCard";
+import { SWIGGY_API } from "../utils/constants";
+import { RestaurantCard, IsOpen } from "./RestaurantCard";
 import { Shimmer } from "./Shimmer";
+import useOnlineStatus from "../utils/hooks/useOnlineStatus";
 
 const Body = () => {
   const [data, setData] = useState([]);
@@ -14,6 +15,8 @@ const Body = () => {
     fetchData();
   }, []);
 
+  const IsOpenCard = IsOpen(RestaurantCard)
+  console.log("data is", data);
   const fetchData = async () => {
     const apiRes = await fetch(SWIGGY_API);
     const apiData = await apiRes?.json();
@@ -26,22 +29,24 @@ const Body = () => {
         ?.restaurants
     );
   };
-
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false)
+    return <h1>Please check your internet connection</h1>;
   return data.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="search">
+    <div className="body justify-between">
+      <div className="flex py-4 px-2">
         <input
           type="text"
-          className="input-box"
+          className="bg-gray-100 border-4 border-gray-300 shadow-red-500 shadow-sm"
           value={inputText}
           onChange={(e) => {
             setInputText(e.target.value);
           }}
         />
         <button
-          className="search-button"
+          className="rounded-xl border-4 border-gray-300 px-1 mx-1 text-sm shadow-red-500 shadow-sm"
           onClick={() => {
             const filteredRes = data.filter((ele) =>
               ele.info.name.toLowerCase().includes(inputText.toLowerCase())
@@ -51,8 +56,9 @@ const Body = () => {
         >
           Search
         </button>
-        <div className="filter">
+        <div className="rounded-xl border-4 border-gray-300 ml-10 text-sm p-1 shadow-red-500 shadow-sm">
           <button
+            className="text-center"
             onClick={() => {
               const resArr = data.filter((ele) => ele.info.avgRating > 4);
               setFilteredRestaurant(resArr);
@@ -62,9 +68,11 @@ const Body = () => {
           </button>
         </div>
       </div>
-      <div className="restaurant-container">
+      <div className="flex flex-wrap justify-between">
         {filteredRestaurant.map((ele) => (
-          <RestaurantCard key={ele.info.id} data={ele} />
+          <Link to={"/res/" + ele.info.id} key={ele.info.id}>
+            {ele.info.isOpen ? <IsOpenCard data={ele}/> : <RestaurantCard data={ele} />}
+          </Link>
         ))}
       </div>
     </div>

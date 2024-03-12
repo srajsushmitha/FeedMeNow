@@ -24,7 +24,7 @@ export const IsOpen = (RestaurantCard)=>{
   return(props)=>{
     return(
       <div>
-      <label className='absolute bg-gray-800 text-white rounded-sm h-6 text-justify'>Open</label>
+      {/* <label className='absolute bg-gray-800 text-white rounded-sm h-6 text-justify'>Open</label> */}
       <RestaurantCard {...props}/>
       </div>
     )

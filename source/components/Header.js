@@ -8,7 +8,6 @@ import cart from "../../images/cart.jpeg";
 export default Header = () => {
   const [str, setStr] = useState("Login");
   const status = useOnlineStatus()
-  console.log(status)
   return (
     <div className = "border-4 flex justify-between items-center">
       <div className="logo-container">
@@ -17,7 +16,7 @@ export default Header = () => {
       <div >
         <ul className="flex flex-wrap items-center p-4 m-4 ">
           <li className="p-4 m-4">Online status: {status ? "🟢" : "🔴"}</li>
-          <Link to="/home">
+          <Link to="/">
             <li className="p-4 m-4">Home</li>
           </Link>
           <Link to="/about-us">

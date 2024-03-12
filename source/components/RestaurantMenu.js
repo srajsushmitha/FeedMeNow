@@ -7,7 +7,7 @@ import { RestaurantCategory } from "./RestaurantCategory";
 
 export default RestaurantMenu = () => {
   const [menuItems, setMenuItems] = useState([]);
-  const [showItems, setShowItems] = useState(0);
+  const [showItems, setShowItems] = useState();
 
   const { id } = useParams();
   useEffect(() => {
@@ -50,7 +50,7 @@ export default RestaurantMenu = () => {
             data={ele?.card?.card}
             showIndex={index === showItems ? true : false}
             setShowItems={() => {
-              setShowItems(index);
+              index === showItems ? setShowItems() : setShowItems(index);
             }}
           />
         ))}

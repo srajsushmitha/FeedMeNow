@@ -15,7 +15,7 @@ const Body = () => {
     fetchData();
   }, []);
 
-  const IsOpenCard = IsOpen(RestaurantCard)
+  // const IsOpenCard = IsOpen(RestaurantCard);
   console.log("data is", data);
   const fetchData = async () => {
     const apiRes = await fetch(SWIGGY_API);
@@ -68,10 +68,10 @@ const Body = () => {
           </button>
         </div>
       </div>
-      <div className="flex flex-wrap justify-between">
+      <div className="flex flex-wrap">
         {filteredRestaurant.map((ele) => (
           <Link to={"/res/" + ele.info.id} key={ele.info.id}>
-            {ele.info.isOpen ? <IsOpenCard data={ele}/> : <RestaurantCard data={ele} />}
+            <RestaurantCard data={ele} />
           </Link>
         ))}
       </div>

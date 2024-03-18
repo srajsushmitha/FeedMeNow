@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 
 const cartSlice = createSlice({
   name: "cart",
@@ -14,7 +14,8 @@ const cartSlice = createSlice({
     },
     clearCart: (state) => {
       console.log('dispatcher called', state)
-      state.items = [];
+      console.log('dispatcher called', current.state)
+      state.items.length = 0;
     },
   },
 });

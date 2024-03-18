@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { SWIGGY_API } from "../utils/constants";
 import { RestaurantCard, IsOpen } from "./RestaurantCard";
 import { Shimmer } from "./Shimmer";
 import useOnlineStatus from "../utils/hooks/useOnlineStatus";
+import { UserInfo } from "../contexts/UserContext";
 
 const Body = () => {
   const [data, setData] = useState([]);
@@ -16,7 +17,10 @@ const Body = () => {
   }, []);
 
   // const IsOpenCard = IsOpen(RestaurantCard);
-  console.log("data is", data);
+
+  const { name, setUserName } = useContext(UserInfo);
+  console.log("name is", name);
+
   const fetchData = async () => {
     const apiRes = await fetch(SWIGGY_API);
     const apiData = await apiRes?.json();
@@ -67,7 +71,13 @@ const Body = () => {
             High rated restaurants
           </button>
         </div>
+        <input
+          className="rounded-xl border-4 border-gray-300 ml-10 text-sm p-1 shadow-red-500 shadow-sm"
+          value={name}
+          onChange={(e)=>setUserName(e.target.value)}
+        />
       </div>
+
       <div className="flex flex-wrap">
         {filteredRestaurant.map((ele) => (
           <Link to={"/res/" + ele.info.id} key={ele.info.id}>

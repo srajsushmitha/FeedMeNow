@@ -30,7 +30,9 @@ export default RestaurantMenu = () => {
       (ele) => {
         return (
           ele.card?.card?.["@type"] ===
-          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+            "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" ||
+          ele.card?.card?.["@type"] ===
+            "type.googleapis.com/swiggy.presentation.food.v2.Restaurant"
         );
       }
     );

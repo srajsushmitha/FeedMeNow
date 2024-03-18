@@ -4,6 +4,7 @@ export const RestaurantCategory = (props) => {
   // console.log("props:", props);
   const {setShowItems,showIndex} = props;
   const { title, itemCards } = props.data;
+  // console.log(props)
 
 const handleClick=()=>{
   setShowItems();

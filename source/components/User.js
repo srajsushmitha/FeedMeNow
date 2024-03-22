@@ -11,13 +11,13 @@ class User extends React.Component {
   render() {
     console.log("Render in User component");
     return (
-      <div>
-        <img src={this.state.avatar_url} alt="Sushmitha's profile" />
+      <div className="text-center p-4">
+        <img className="w-1/12 m-auto" src={this.state.avatar_url} alt="Sushmitha's profile" />
         <h4>{this.state.name}</h4>
-        <h4>
+        <h4 className="underline">
           <Link>{this.state.repos_url}</Link>
         </h4>
-        <h4>{this.state.login}</h4>
+        <h4>User name: {this.state.login}</h4>
       </div>
     );
   }

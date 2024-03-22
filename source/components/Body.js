@@ -43,14 +43,14 @@ const Body = () => {
       <div className="flex py-4 px-2">
         <input
           type="text"
-          className="bg-gray-100 border-4 border-gray-300 shadow-red-500 shadow-sm"
+          className="bg-gray-100 border-4 border-gray-300  shadow-sm"
           value={inputText}
           onChange={(e) => {
             setInputText(e.target.value);
           }}
         />
         <button
-          className="rounded-xl border-4 border-gray-300 px-1 mx-1 text-sm shadow-red-500 shadow-sm"
+          className="rounded-xl border-4 border-gray-300 px-1 mx-1 text-sm  shadow-sm"
           onClick={() => {
             const filteredRes = data.filter((ele) =>
               ele.info.name.toLowerCase().includes(inputText.toLowerCase())
@@ -60,7 +60,7 @@ const Body = () => {
         >
           Search
         </button>
-        <div className="rounded-xl border-4 border-gray-300 ml-10 text-sm p-1 shadow-red-500 shadow-sm">
+        <div className="rounded-xl border-4 border-gray-300 ml-10 text-sm p-1 shadow-sm">
           <button
             className="text-center"
             onClick={() => {
@@ -72,7 +72,7 @@ const Body = () => {
           </button>
         </div>
         <input
-          className="rounded-xl border-4 border-gray-300 ml-10 text-sm p-1 shadow-red-500 shadow-sm"
+          className="rounded-xl border-4 border-gray-300 ml-10 text-xs p-1 shadow-sm"
           value={name}
           onChange={(e)=>setUserName(e.target.value)}
         />

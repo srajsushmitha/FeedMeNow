@@ -21,7 +21,7 @@ const AppLayoutComponent = () => {
   useEffect(() => {
     //call an api
     const user = {
-      name: "Sushmitha",
+      name: "React Context",
     };
     setUserName(user.name);
   },[]);

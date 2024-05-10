@@ -22,21 +22,22 @@ const Body = () => {
   console.log("name is", name);
 
   const fetchData = async () => {
+    console.log('called')
     const apiRes = await fetch(SWIGGY_API);
     const apiData = await apiRes?.json();
     setData(
-      apiData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
+      apiData?.data?.cards[2].card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    console.log("restaurants are:", apiData?.data?.cards[2].card?.card?.gridElements?.infoWithStyle?.restaurants);
+
     setFilteredRestaurant(
-      apiData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
+      apiData?.data?.cards[2].card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
   const onlineStatus = useOnlineStatus();
   if (onlineStatus === false)
     return <h1>Please check your internet connection</h1>;
-  return data.length === 0 ? (
+  return data?.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body justify-between">
@@ -79,7 +80,7 @@ const Body = () => {
       </div>
 
       <div className="flex flex-wrap">
-        {filteredRestaurant.map((ele) => (
+        {filteredRestaurant?.map((ele) => (
           <Link to={"/res/" + ele.info.id} key={ele.info.id}>
             <RestaurantCard data={ele} />
           </Link>

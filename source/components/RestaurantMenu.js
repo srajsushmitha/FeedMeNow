@@ -26,7 +26,7 @@ export default RestaurantMenu = () => {
     // );
   };
   const resSec =
-    menuItems.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    menuItems.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (ele) => {
         return (
           ele.card?.card?.["@type"] ===
@@ -42,11 +42,11 @@ export default RestaurantMenu = () => {
     <div>
       <div className="text-center">
         <h2 className="font-bold text-lg">
-          {menuItems.data?.cards[0]?.card?.card?.info.name}
+          {menuItems.data?.cards[0]?.card?.card?.info?.name}
         </h2>
-        <h4>{menuItems.data?.cards[0]?.card?.card?.info.cuisines.join(",")}</h4>
-        <h4>{menuItems.data?.cards[0]?.card?.card?.info.avgRating}</h4>
-        {resSec.map((ele, index) => (
+        <h4>{menuItems.data?.cards[2]?.card?.card?.info?.cuisines.join(",")}</h4>
+        <h4>{menuItems.data?.cards[2]?.card?.card?.info?.avgRating}</h4>
+        {resSec?.map((ele, index) => (
           <RestaurantCategory
             key={ele?.card?.card?.title}
             data={ele?.card?.card}

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { SWIGGY_API } from "../utils/constants";
+import  restaurants  from "../utils/mockData";
 import { RestaurantCard, IsOpen } from "./RestaurantCard";
 import { Shimmer } from "./Shimmer";
 import useOnlineStatus from "../utils/hooks/useOnlineStatus";
@@ -19,19 +19,15 @@ const Body = () => {
   // const IsOpenCard = IsOpen(RestaurantCard);
 
   const { name, setUserName } = useContext(UserInfo);
-  console.log("name is", name);
 
   const fetchData = async () => {
-    console.log('called')
-    const apiRes = await fetch(SWIGGY_API);
-    const apiData = await apiRes?.json();
+    
     setData(
-      apiData?.data?.cards[2].card?.card?.gridElements?.infoWithStyle?.restaurants
+      restaurants
     );
-    console.log("restaurants are:", apiData?.data?.cards[2].card?.card?.gridElements?.infoWithStyle?.restaurants);
 
     setFilteredRestaurant(
-      apiData?.data?.cards[2].card?.card?.gridElements?.infoWithStyle?.restaurants
+      restaurants
     );
   };
   const onlineStatus = useOnlineStatus();
@@ -65,7 +61,7 @@ const Body = () => {
           <button
             className="text-center"
             onClick={() => {
-              const resArr = data.filter((ele) => ele.info.avgRating > 4);
+              const resArr = data.filter((ele) => ele.info.avgRating > 4.4);
               setFilteredRestaurant(resArr);
             }}
           >

@@ -6,7 +6,6 @@ import { clearCart } from "../redux/slice/cartSlice";
 export const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
-  console.log(cartItems);
   return (
     <div className="w-6/12 m-auto p-4">
       <button

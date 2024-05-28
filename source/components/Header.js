@@ -1,23 +1,25 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import {useSelector} from 'react-redux';
+import { useSelector } from "react-redux";
 
-import {UserInfo} from '../contexts/UserContext'
-import useOnlineStatus from '../utils/hooks/useOnlineStatus'
+import { UserInfo } from "../contexts/UserContext";
+import useOnlineStatus from "../utils/hooks/useOnlineStatus";
 import logo from "../../images/logo.png";
 import cart from "../../images/cart.jpeg";
 
 export default Header = () => {
   const [str, setStr] = useState("Login");
-  const {name} = useContext(UserInfo)
-  const cartItems = useSelector((store)=>store.cart.items)
-  const status = useOnlineStatus()
+  const { name } = useContext(UserInfo);
+  const cartItems = useSelector((store) => store.cart.items);
+  const status = useOnlineStatus();
   return (
-    <div className = "border-4 flex justify-between items-center">
+    <div className="border-4 flex justify-between items-center">
       <div className="logo-container">
         <img className="w-[100]" src={logo} alt="logo" />
       </div>
-      <div >
+      <p className="text-red-600">Please enable CORS on your browser</p>
+
+      <div>
         <ul className="flex flex-wrap items-center p-4 m-4 ">
           <li className="p-4 m-4">Online status: {status ? "🟢" : "🔴"}</li>
           <Link to="/">

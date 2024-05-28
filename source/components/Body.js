@@ -73,6 +73,7 @@ const Body = () => {
           value={name}
           onChange={(e)=>setUserName(e.target.value)}
         />
+        <p className="text-red-600">Please enable CORS on your browser</p>
       </div>
 
       <div className="flex flex-wrap">
